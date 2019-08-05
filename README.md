@@ -1,7 +1,7 @@
 # chrome_docker
 chrome in docker
 
-image assembly
+создание образа
 
 docker build -t chrome .
 
