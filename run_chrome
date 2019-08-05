@@ -1,0 +1,15 @@
+#!/bin/bash
+
+EXISTS=$(getent group hostgroup)
+if [ "$EXISTS" == "" ]; then
+groupadd -g $HOST_GID -o hostgroup
+usermod -u $HOST_UID -g $HOST_GID docker
+chown docker:hostgroup \
+    /home/docker/.config/ \
+    /home/docker/.config/google-chrome \
+    /home/docker/.cache \
+    /home/docker/.cache/google-chrome \
+    /home/docker/Downloads
+fi
+
+su - docker -c google-chrome
